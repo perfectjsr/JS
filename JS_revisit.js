@@ -1,3 +1,15 @@
+// Change in package.json type to module to run in a react app as given below:
+
+//  see npm init -y
+/*
+"name": "my_quiz_app",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+
+*/
+
+
 const data = {
     A: {
       Subjects: ["Math", "Science", "History"],
@@ -102,8 +114,27 @@ const data = {
   // const arC = (new Date(timeframeC2)-new Date(timeframeC1))/(1000*60*60*24)
   // console.log(arC)
 
-  const dates = Object.keys(data).map((program) => ({
-    Program: program,
-      Duration: (new Date(data[program]['End Date'])  - new Date(data[program]['Start Date']))/(1000*60*60*24)
-    }));
-  console.log(dates)
+  // const dates = Object.keys(data).map((program) => ({
+  //   Program: program,
+  //     Duration: (new Date(data[program]['End Date'])  - new Date(data[program]['Start Date']))/(1000*60*60*24)
+  //   }));
+  // console.log(dates)
+
+  // const datas = Object.values(data).map((programs)=>{
+  //   return Object.values(programs.Branches).map((branch)=>{
+  //     return Object.values(branch.total).map((d)=>{
+  //       console.log(d)
+  //     })
+  //   })
+  // })
+
+
+  const branches = Object.values(data).flatMap((programs)=>{
+    Object.values(programs.Branches).flatMap((d)=>{
+      console.log(Object.values(d.total));
+    })
+  })
+
+  // const branches = Object.values(data).map((programs)=>{
+  //      console.log(programs.Branches.total)
+  //    })
